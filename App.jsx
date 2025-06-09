@@ -1,6 +1,8 @@
-import React from "react";
+iimport React from "react";
 import Group from "./Photo/Group1.png";
 import { useState } from "react";
+import { SiClickhouse } from "react-icons/si";
+import { FcIntegratedWebcam } from "react-icons/fc";
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [newTasks, setNexTasks] = useState("");
@@ -21,7 +23,7 @@ const App = () => {
   function Handleinpute(event) {
     setNexTasks(event.target.value);
   }
-  const [clicked, setClicked] = useState(null);
+  const [clicked, setClicked] = useState([]);
   return (
     <>
       <div className="flex justify-center my-130  flex-col  items-center">
@@ -54,16 +56,17 @@ const App = () => {
                     style={{
                       width: "24px",
                       height: "24px",
-                      backgroundColor: clicked == index ? "#FF5349" : "white",
-                      border:
-                        clicked == index
-                          ? "#FF5349 solid 3px"
-                          : "#DADADA solid 3px",
+                      backgroundColor: clicked[index] ? "#FF5349" : "white",
+                      border: clicked[index]
+                        ? "#FF5349 solid 3px"
+                        : "#DADADA solid 3px",
                       borderRadius: "100%",
                       transition: "background-color 0.3s ease",
                     }}
                     onClick={() => {
-                      setClicked(index);
+                      const update = [...clicked];
+                      update[index] = !update[index];
+                      setClicked(update);
                     }}
                   ></button>
                   <div className="text-black font-[poppins] my-10 text-[13px] font-400 w-full h-full pl-[20px] whitespace-normal">
